@@ -1,21 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux'; //To get the count out of Redux
-import './App.css';
+import './Counter.css';
 
-class App extends React.Component {
+class Counter extends React.Component {
 
     
 
     increment = () =>{
-    /*  this.setState({
-        count: this.state.count + 1
-      });*/
+      this.props.dispatch({ type: 'INCREMENT' })
     }
 
     decrement = () => {
-      /*this.setState({
-        count: this.state.count - 1
-      });*/
+      this.props.dispatch({ type: 'DECREMENT' })
     }
 
   render() {
@@ -33,7 +29,7 @@ class App extends React.Component {
 }
 
 
-//--Connecting App component to Redux
+//--Connecting Counter component to Redux
 function mapStateToProps(state) {
   return {
     count : state.count
@@ -41,4 +37,4 @@ function mapStateToProps(state) {
 }
 //--Connect is higher-order component.
 //it returns a function when you call it. And then calling that function with a component returns a new (wrapped) component.
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(Counter);
