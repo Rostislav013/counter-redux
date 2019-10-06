@@ -1,26 +1,44 @@
 import React from 'react';
-import logo from './logo.svg';
+import { connect } from 'react-redux'; //To get the count out of Redux
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+    
+
+    increment = () =>{
+    /*  this.setState({
+        count: this.state.count + 1
+      });*/
+    }
+
+    decrement = () => {
+      /*this.setState({
+        count: this.state.count - 1
+      });*/
+    }
+
+  render() {
+    return (
+      <div className="App">
+        <h2>Counter</h2>
+        <div>
+          <button onClick={this.decrement}>-</button>
+          <span>{this.props.count}</span>
+          <button onClick={this.increment}>+</button>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default App;
+
+//--Connecting App component to Redux
+function mapStateToProps(state) {
+  return {
+    count : state.count
+  };
+}
+//--Connect is higher-order component.
+//it returns a function when you call it. And then calling that function with a component returns a new (wrapped) component.
+export default connect(mapStateToProps)(App);
