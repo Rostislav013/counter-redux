@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import './index.css';
 import { createStore } from 'redux';
 import * as serviceWorker from './serviceWorker';
-
+import react from './img/react.png';
 
 
 const initialState = {
@@ -31,7 +31,10 @@ function reducer(state = initialState, action) {
             } else {
                 return state;
             }
-            
+        case 'RESTART':
+            return {
+                count: 0
+                }; 
         default:
             return state;
     }
@@ -44,6 +47,9 @@ const App = () => (
         <Provider store = {store}>
             <Counter/>
         </Provider>
+        <div className="madeInReact">
+          <img src={react} alt="Made in React" />
+        </div>
     </div>
   );
 
